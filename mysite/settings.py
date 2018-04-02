@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-import dj_database_url 
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -36,13 +36,13 @@ DEBUG = False
 # Application definition
 
 INSTALLED_APPS = [
+    'blog',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	'blog',
 ]
 
 MIDDLEWARE = [
@@ -82,10 +82,10 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dmav6n4ji43o8',
-        'USER': 'qhkrxpmazdzfyq',
-        'PASSWORD': '20baf8505419e95922ee9ea429d19f779a021a8357142e31ec0978871b7fd6f6',
-        'HOST': 'ec2-184-73-202-112.compute-1.amazonaws.com',
+        'NAME': 'dfj6gvlosb2jfr',
+        'USER': 'rtpqtdjiwboehg',
+        'PASSWORD': 'ce810d990cc89b4f5fd366592ae487b406fcd02163c3173432beded7d7b603f7',
+        'HOST': 'ec2-107-21-126-193.compute-1.amazonaws.com',
         'PORT': '5432',
 
     }
@@ -152,6 +152,3 @@ try:
     from .local_settings import *
 except ImportError:
     pass
-
-
-

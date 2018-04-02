@@ -8,6 +8,16 @@ from watson_developer_cloud import ToneAnalyzerV3
 from watson_developer_cloud import LanguageTranslatorV2 as LanguageTranslator
 # Create your views here.
 
+class HyperPost:
+
+    def __init__(self, Post,post_text, wc, ccount, translation):
+
+        self.post = Post
+        self.post_text = post_text
+        self.word_count = wc
+        self.character_count = ccount
+        self.translation = translation
+
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     tone_analyzer = ToneAnalyzerV3(
@@ -20,7 +30,7 @@ def post_list(request):
         password='M4lMWTjRAVNB')
 
     # print(json.dumps(translation, indent=2, ensure_ascii=False))
-
+    hyper_posts = []
     for post in posts:
         posting = post.text
         toneObj= json.dumps(tone_analyzer.tone(tone_input=posting,
@@ -38,10 +48,10 @@ def post_list(request):
             target='es')
         obj= json.dumps(translation, indent=2, ensure_ascii=False)
         post.obj2 = json.loads(obj)
+        hyper_posts.append(HyperPost(post, posting, post.obj2['word_count'], post.obj2['character_count'],post.obj2['translations'][0]['translation']))
 
 
-
-    return render(request, 'blog/post_list.html', {'posts': posts})
+    return render(request, 'blog/post_list.html', {'posts': hyper_posts})
 
 
 def post_detail(request, pk):
