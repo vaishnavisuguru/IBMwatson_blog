@@ -7,7 +7,16 @@
                 {{ post.published_date }}
             </div>
             <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-            <p>{{ post.text|linebreaksbr }}</p>
-        </div>
+            <p>{{ post.text|linebreaksbr }}</p​>
+            <br></br>
+            <h5 style="background-color:yellow">Watson Says:</h5>
+ <p​>Anger : {{ post.angerScore }} |
+ Disgust : {{ post.disgustScore }} |
+ Fear : {{ post.fearScore }} |
+ Joy : {{ post.joyScore }} |
+ Sad : {{ post.sadScore }}</p​>
+ <br></br>
+ <p​>{{ post.obj2}}</p​>
+      </div>
     {% endfor %}
 {% endblock content %}
